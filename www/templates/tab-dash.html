@@ -1,0 +1,56 @@
+<ion-view view-title="Run trace">
+  <ion-content>
+    <span class="item-header">Arquivos disponíveis no wifitracker:</span>
+    <button class="item item-icon-left" ng-click="uploadFile()" style="width: 100%;">
+      <i class="icon ion-document-text"></i>
+      <span>abcd-2017-01-23-18-02-38.json</span>
+    </button>
+
+
+      <!-- <label class="item item-input">
+        <input id="the-file" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"></input>
+        <span> </span>
+      </label> -->
+
+
+<br />
+      <div class="list padding">
+        <label class="item item-input">
+          <span class="input-label">File:</span>
+          <span class="input-label">{{file.name}}</span>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Arrival</span>
+          <span class="input-label">{{file.arrive.time}}</span>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Departure</span>
+          <span class="input-label">{{file.departure.time}}</span>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Number of events</span>
+          <span class="input-label">{{file.events.length}}</span>
+        </label>
+<br />
+        <label class="item item-input item-stacked-label light-grey">
+          <span class="input-label">Trace start</span>
+          <span class="input-label">{{file.start}}</span>
+        </label>
+        <label class="item item-input item-stacked-label light-grey">
+          <span class="input-label">Trace end</span>
+          <span class="input-label">{{file.end}}</span>
+        </label>
+        <label class="item item-input item-stacked-label light-grey">
+          <span class="input-label">Trace duration</span>
+          <span class="input-label">{{file.trace_duration}}</span>
+        </label>
+<br />
+        <label class="item item-input">
+          <span class="input-label">Trace scan interval (ms):</span>
+          <span class="input-label">{{file.config.traceIntervalValue}}</span>
+        </label>
+
+      </div>
+
+     </ion-content>
+</ion-view>
