@@ -1,0 +1,17 @@
+/* Empty. Add your own CSS if you like */
+
+
+*{
+  /*font-family: 'Fira Sans Condensed', sans-serif!important;*/
+  font-family: 'Ropa Sans', sans-serif!important;
+}
+.item-header{
+  display: block;
+  background-color: #f5f5f5;
+  padding: 0.5em;
+  text-align: center;
+  letter-spacing: 1.4px;  
+}
+
+.light-grey{background-color: #f5f5f5!important;}
+.rock-grey {background-color: #444343!important; color: #d2cfce!important}
