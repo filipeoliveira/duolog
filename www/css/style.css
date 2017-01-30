@@ -7,3 +7,322 @@
 
 .light-grey{background-color: #f5f5f5!important;}
 .rock-grey {background-color: #444343!important; color: #d2cfce!important}
+
+.item-header{
+  background-color: #f5f5f5;
+  display: block;
+  letter-spacing: 1.4px;
+  padding: 0.5em;
+  text-align: center;
+}
+
+
+
+
+.background-container{
+  background-color: #5384ec;
+  height: 105px;
+}
+
+/* ---------- MAIN CONTAINER ----------*/
+.main-container{
+  margin:auto;
+  min-height:768px!important;
+  width:1024px!important;
+}
+
+
+/* ---------- HEADER ---------- */
+.duo-header{
+  margin: auto;
+  width: 1024px;
+}
+
+.duo-header > *{
+  color: white;
+}
+
+
+/* ---------- LOGO ---------- */
+.duo-header > img{
+  height: 23px;
+  width: 113px;
+}
+
+.duo-header-logo {
+  align-items:center;
+  display:flex;
+  float:left;
+  height:105px;
+  justify-content:center;
+  width:325px;
+}
+
+.duo-header-logo > img {
+  height:23px;
+  width:113px;
+}
+
+.duo-header > div:first-of-type {
+  width: 325px;
+}
+.duo-header > div:first-of-type > img{
+  margin: 0 auto;
+}
+
+
+/* ---------- TEXT ---------- */
+.duo-header > img{
+  height: 23px;
+  width: 113px;
+}
+
+.duo-header-text{
+  padding: 1.4em 0em;
+}
+
+.duo-header-text > *{
+  color: white;
+}
+
+.duo-header-text > h2{
+  margin-bottom: 0em;
+}
+
+.duo-header-text > span{
+  font-size: 1.2em;
+}
+
+
+
+.first-section{
+  width:325px;
+  height: 663px;
+  float: left;
+}
+
+.log-item{
+  padding: 1em;
+  height: 60px;
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  color: #616773;
+}
+
+.log-item > div{
+  float: right;
+}
+
+.log-item-name {
+  margin-top: 0.25em;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 50%;
+}
+
+.log-date{
+    margin: 0.25em 1em 0 0;
+    display: inline-block;
+}
+
+.log-item:hover{
+  background-color: #f6f9ff;
+  cursor: pointer;
+}
+
+
+.log-item > div > button{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #5384ec;
+  color: white;
+}
+
+.log-item > div > button:hover{
+  color: white;
+}
+
+
+
+
+.second-section{
+  width:325px;
+  height: 663px;
+  background-color: #edf4ff;
+  float: left;
+  padding: 0 2em;
+}
+
+.second-section > div > img{
+  display: block;
+  margin: auto;
+  margin-top: 15em;
+}
+
+.second-section > div > p{
+  text-align: center;
+  color: #5384ec;
+  margin-top: 1em;
+  font-size: 1.2em;
+}
+
+.second-section > .log-info > div{
+  display: block;
+  margin: auto;
+  border-bottom: 1px solid #ddd;
+  padding: 1em 0.5em 1em 0.5em;
+}
+
+.second-section > .log-info > div:last-of-type{
+  display: block;
+  margin: auto;
+  border-bottom: none;
+}
+
+.second-section > .log-info > div > span:first-of-type{
+  display: inline-block;
+  margin: auto;
+  width: 145px;
+}
+
+.second-section > div >.spinner{
+  fill: blue!important;
+  margin: 9em;
+}
+
+.log-info{
+  margin-bottom: 1em;
+}
+
+
+.log-info-item{
+  color: #5384ec;
+}
+
+.log-info-item-value{
+  color: #616773
+}
+
+
+
+
+
+.log-header{
+  display: block;
+}
+
+.log-header > .log-title{
+  color: #5384ec;
+  font-size: 1.3em;
+  text-align: center;
+  display: block;
+  padding-top: 2em;
+}
+
+
+.log-header > .log-subtitle{
+  color: #5384ec;
+  font-size: 0.9em;
+  text-align: center;
+  display: block;
+  margin: 0.3em 0 1em 0;
+}
+
+.second-section > div > button{
+  background-color: #5384ec;
+  color: white;
+}
+
+.second-section > div > button:hover{
+  background-color: #3b65bf;
+  color: white;
+}
+
+.second-section > div > button > i{
+  margin-top: 1em;
+  margin-left: 2.5em;
+}
+
+.log-trace{
+  border: 1px solid #dfedfd;
+  border-radius: 3px;
+}
+
+.log-trace-title{
+  padding: 0.5em;
+  text-align: center;
+  color: #5384ec;
+  background-color: #dfedfd;
+}
+
+
+
+.third-section{
+  background-color: #e3effa;
+  width:325px;
+  height: 663px;
+  float: left;
+}
+
+.third-section > div > p{
+  text-align: center;
+  color: #5384ec;
+  margin-top: 1em;
+  font-size: 1.2em;
+}
+
+.third-section > div > img{
+  display: block;
+  margin: auto;
+  margin-top: 15em;
+}
+
+.third-section > div >.spinner{
+  fill: blue!important;
+  margin: 10.5em;
+}
+
+
+
+.log-trace > .log-info > div{
+  display: block;
+  margin: auto;
+  border-bottom: 1px solid #ddd;
+  padding: 1em 0.5em 1em 0.5em;
+}
+
+  .log-trace > .log-info > div:last-of-type{
+  display: block;
+  margin: auto;
+  border-bottom: none;
+}
+
+.log-trace > .log-info > div > span:first-of-type{
+  display: inline-block;
+  margin: auto;
+  width: 145px;
+}
+
+
+
+
+.log-info{
+  margin-bottom: 1em;
+}
+
+.log-info-item{
+  color: #5384ec;
+  font-size:  0.9em;
+}
+
+.log-info-item-value{
+  color: #616773
+}
+
+
+.clear{
+  clear:both;
+}
