@@ -18,6 +18,76 @@ angular.module('starter.controllers', [])
 
   }
 
+  // Responsible for loading initial log files in decrescent time order (newer to oldest)
+  $scope.initialize = function(){
+    resetVariables();
+    // $http({
+    //   method: 'GET',
+    //   // url: 'http://luizfelipe.com.br/wifitracker/list.php',
+    //   url: 'http://luizfelipe.com.br/wifitracker/',
+    //   headers: {'Content-Type': 'application/json'}
+    // })
+    // .then(function(response, status) {
+    //
+    //   console.log(response);
+    //
+    //   $scope.logs = response.data;
+    //
+    //
+    // }, function(response, status){
+    //   console.log(response);
+    //   alert('Algo deu errado');
+    // }).then(function(){
+    //   console.log('ok');
+    // })
+
+    //Initial logs from server
+    $scope.serverLogs = [
+                          "/home/luizfeli/public_html/wifitracker/2017-01-26-17-21-44.json",
+                          "/home/luizfeli/public_html/wifitracker/2017-01-26-17-27-12.json",
+                          "/home/luizfeli/public_html/wifitracker/2017-01-26-17-35-56.json",
+                          "/home/luizfeli/public_html/wifitracker/2017-01-29-08-42-55.json",
+                          "/home/luizfeli/public_html/wifitracker/abcd-2017-01-23-18-02-38.json"
+                        ].reverse();
+
+    //Show parsed log
+    $scope.logs = [];
+    var index_log = 0;
+
+    //Iterating trough logs
+    $scope.serverLogs.forEach(function(log){
+
+      var log_tmp = log.split("/");
+      var log_url = log_tmp[log_tmp.length - 1];
+
+      //cuting out .json
+      log_tmp = log_url.split(".");
+
+      //cuting out "-"
+      log_tmp = log_tmp[0].split("-");
+
+      //Array.lenght = 6 without name;
+      if (isNaN(log_tmp[0])){
+        var obj = {
+          "name"      : log_tmp[0],
+          "date"      : log_tmp[3] + "/" + log_tmp[2] + "/" + log_tmp[1],
+          "timestamp" : log_tmp[1] + "-" + log_tmp[2] + "-" + log_tmp[3] + "-" + log_tmp[4] + "-" + log_tmp[5] + "-" + log_tmp[6],
+          "url"       : "http://luizfelipe.com.br/wifitracker/get.php?name=" + log_url
+        }
+      }
+      else {
+        var obj = {
+          "name"      : "no_name_log_" + index_log,
+          "date"      : log_tmp[2] + "/" + log_tmp[1] + "/" + log_tmp[0],
+          "timestamp" : log_tmp[0] + "-" + log_tmp[1] + "-" + log_tmp[2] + "-" + log_tmp[3] + "-" + log_tmp[4] + "-" + log_tmp[5],
+          "url"       : "http://luizfelipe.com.br/wifitracker/get.php?name=" + log_url
+        }
+
+        index_log = index_log + 1;
+
+      }
+      $scope.logs.push(obj);
+    })
           $http({
             method: 'GET',
             // url: 'http://luizfelipe.com.br/wifitracker',                             //cors
