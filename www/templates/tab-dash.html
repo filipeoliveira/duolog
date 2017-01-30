@@ -39,10 +39,91 @@
 
       <div class="second-section">
 
-        <div>
-          <img src=""/>
-          <p></p>
+        <div ng-if="!selectedLog && !startLoadingLog && !loadingLogError && !emptyLogError">
+          <img src="img/detail.png"/>
+          <p>Selecione um log para<br/> <b>visualizar seus dados</b></p>
         </div>
+
+        <div ng-if="startLoadingLog">
+          <img src="img/detail.png"/>
+          <p><b>Baixando log </b>de <br />informações do servidor</p>
+          <ion-spinner class="spinner" icon="dots"></ion-spinner>
+        </div>
+
+        <div ng-if="loadingLogError">
+          <img src="img/detail.png"/>
+          <p><b>Algo deu errado</b><br />Cheque o console</p>
+        </div>
+
+        <div ng-if="emptyLogError">
+          <img src="img/detail.png"/>
+          <p><b>Log selecionado</b><br/>encontra-se vazio</p>
+        </div>
+
+
+        <div class="log-header" ng-if="selectedLog && !startLoadingLog">
+          <span class="log-title">{{selectedLog.name}}</span>
+          <span class="log-subtitle">{{selectedLog.date}}</span>
+        </div>
+
+
+        <div class="log-info" ng-if="selectedLog && !startLoadingLog">
+          <div>
+            <span class="log-info-item">CHEGADA</span>
+            <span ng-if="selectedLog.arrive "class="log-info-item-value">{{selectedLog.arrive.time}}</span>
+            <span ng-if="!selectedLog.arrive "class="log-info-item-value">Não informado</span>
+            <div class="clear"></div>
+          </div>
+
+          <div>
+            <span class="log-info-item">SAÍDA</span>
+            <span ng-if="selectedLog.departure"  class="log-info-item-value">{{selectedLog.departure.time}}</span>
+            <span ng-if="!selectedLog.departure" class="log-info-item-value">Não informado</span>
+          </div>
+
+          <div>
+            <span class="log-info-item">EVENTOS</span>
+            <span class="log-info-item-value">{{selectedLog.events.length}}</span>
+          </div>
+
+
+        </div>
+
+        <div class="log-trace" ng-if="selectedLog && !startLoadingLog">
+
+          <div class="log-trace-title">
+            <span>INFORMAÇÕES DO TRACE</span>
+          </div>
+
+          <div class="log-info">
+            <div>
+              <span class="log-info-item">INÍCIO</span>
+              <span class="log-info-item-value">{{selectedLog.start}}</span>
+              <div class="clear"></div>
+            </div>
+
+            <div>
+              <span class="log-info-item">FIM</span>
+              <span class="log-info-item-value">{{selectedLog.end}}</span>
+            </div>
+
+            <div>
+              <span class="log-info-item">DURAÇÃO</span>
+              <span class="log-info-item-value">{{selectedLog.trace_duration}}</span>
+            </div>
+
+            <div>
+              <span class="log-info-item">INTERVALO DO SCAN</span>
+              <span class="log-info-item-value">{{selectedLog.config.traceIntervalValue}} (ms)</span>
+            </div>
+
+          </div>
+        </div>
+
+        <div ng-if="selectedLog && !startLoadingLog">
+            <button class="button button-block"><span>Executar simulação</span><i class="icon ion-ios-arrow-right"></i></button>
+        </div>
+
 
       </div>
 
