@@ -4,13 +4,13 @@
   <div class="background-container">
     <div class="duo-header">
 
-      <div style="float:left;display:flex;justify-content:center;align-items:center;width:325px;height: 105px">
-        <img src="img/logo.png" style="width:113px;height:23px;"></div>
+      <div class="duo-header-logo">
+        <img src="img/logo.png" ></div>
       </div>
 
-      <div style="float: left;">
-        <h2>Lorem ipsum dolor sit amet</h2>
-        <span>mauris dapibus nutrium erat, quis luctus risiu intermdum lacninia</span>
+      <div class="duo-header-text">
+        <h2>Duolog</h2>
+        <span>Serviço de simulação de experimentos utilizando traces de redes WIFI</span>
       </div>
     </div>
   </div>
@@ -19,17 +19,22 @@
 
 
       <div class="first-section">
-        <div>
-          <span>
-            Lorem ipsum dolor amet
+        <div class="log-item" ng-repeat="log in logs" ng-click="loadLog($index, log.url)">
+          <span class="log-item-name">
+            {{log.name}}
           </span>
-          <span class="log-date">
-            27/01/2017
-          </span>
-          <button>
-            >
-          </button>
+
+          <div>
+            <span class="log-date">
+              {{log.date}}
+            </span>
+            <button class="button button-small icon ion-ios-arrow-forward">
+            </button>
+          </div>
         </div>
+
+
+
       </div>
 
       <div class="second-section">
