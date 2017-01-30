@@ -88,46 +88,71 @@ angular.module('starter.controllers', [])
       }
       $scope.logs.push(obj);
     })
+  }
+
+  $scope.loadLog = function(index, log_url) {
+    resetVariables();
+    $scope.startLoadingLog = true;
+
           $http({
             method: 'GET',
-            // url: 'http://luizfelipe.com.br/wifitracker',                             //cors
-            // url: 'http://luizfelipe.com.br/wifitracker/list.php',                   //erro no json
-            url: 'http://luizfelipe.com.br/wifitracker/get.php?name=2017-01-25-17-27-03.json', //cors
-            // url: 'logs/abcd-2017-01-23-18-02-38.json',
+            url: log_url,
             headers: {'Content-Type': 'application/json'}
-
           })
         .then(function(response, status) {
 
-
           console.log(response);
 
-          var events = response.data.events;
+          $scope.selectedLog = response.data;
 
-          events.forEach(function(event){
-            $scope.speedArr.push(event.position.speed);
-          })
+          if ($scope.selectedLog === ""){
+            $scope.emptyLogError = true;
+          }
+          else {
+            $scope.selectedLog.date = $scope.logs[index].date;
 
+            // var events = response.data.events;
+            //
+            // events.forEach(function(event){
+            //   $scope.speedArr.push(event.position.speed);
+            // })
 
-          // $scope.file = response.data;
-          //
-          // $scope.file.events.forEach(function(event){
-          //
-          //   if(event.type === 'real-arrive'){
-          //     $scope.file.arrive = event;
-          //   }
-          //
-          //   if(event.type === 'real-departure'){
-          //     $scope.file.departure = event;
-          //   }
-          // })
+            if ($scope.selectedLog.events){
+              $scope.selectedLog.events.forEach(function(event){
+
+                if(event.type === 'real-arrive'){
+                  $scope.selectedLog.arrive = event;
+                }
+
+                if(event.type === 'real-departure'){
+                  $scope.selectedLog.departure = event;
+                }
+              });
+            }
+            else {
+              $scope.selectedLog.events = []
+            }
+          }
+
+          console.log($scope.selectedLog);
+
+          $timeout(function(){
+            $scope.startLoadingLog = false;
+            $scope.logLoaded = true;
+
+          }, 1500)
+
 
         }, function(response, status){
           console.log(response);
-          alert('Algo deu errado');
-        }).then(function(){
-          console.log($scope.speedArr);
-        })
+
+          $timeout(function(){
+            $scope.startLoadingLog = false;
+            $scope.loadingLogError = true;
+            $scope.logLoaded       = false;
+            alert('Algo deu errado');
+          }, 1000)
+        });
 
 
 
