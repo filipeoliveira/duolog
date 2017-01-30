@@ -1,10 +1,22 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, $http) {
+.controller('AppCtrl', function($scope, $http, $timeout) {
 
-  $scope.speedArr = [];
+  $scope.speedArr          = [];
 
-  $scope.uploadFile = function(files) {
+  function resetVariables(){
+
+    $scope.selectedLog       = null;
+
+    $scope.startLoadingLog   = null;
+    $scope.loadingLog        = null;
+    $scope.loadingLogError   = null;
+    $scope.emptyLogError     = null;
+
+    $scope.startExecutingLog = null;
+    $scope.executingLog      = null;
+
+  }
 
           $http({
             method: 'GET',
