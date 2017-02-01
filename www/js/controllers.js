@@ -158,6 +158,41 @@ angular.module('starter.controllers', [])
 
   };
 
+  $scope.simulate = function(selectedLog){
+
+    console.log(selectedLog);
+
+    var events              = selectedLog.events;
+    var knowledges_networks = selectedLog.knowledges_networks;
+
+    //For each Events
+    events.forEach(function(event){
+        var eventNetworks = event.data;
+        // console.log(eventNetworks);
+
+        //For each network in events
+        eventNetworks.every(function(eventNetwork){
+
+          //For each network in events compare with each knowledge network.
+          knowledges_networks.every(function(knowledgeNetwork){
+
+            //If I dont have a potentialWaiting.network set than I continue to iterate.
+            if(!$scope.potencialWaiting.network){
+              if (eventNetwork.BSSID === knowledgeNetwork.BSSID){
+                console.log('MATCH: Possible potencial waiting: ' + knowledgeNetwork.SSID);
+                $scope.potencialWaiting.network = knowledgeNetwork;
+                console.log(knowledgeNetwork);
+                return false;
+              }
+            }
+
+
+          });
+
+        });
+
+    });
+  }
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
