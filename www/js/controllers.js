@@ -43,10 +43,8 @@ angular.module('starter.controllers', [])
 
     //Initial logs from server
     $scope.serverLogs = [
-                          "/home/luizfeli/public_html/wifitracker/2017-01-26-17-21-44.json",
-                          "/home/luizfeli/public_html/wifitracker/2017-01-26-17-27-12.json",
-                          "/home/luizfeli/public_html/wifitracker/2017-01-26-17-35-56.json",
-                          "/home/luizfeli/public_html/wifitracker/2017-01-29-08-42-55.json",
+                          "/home/luizfeli/public_html/wifitracker/2017-01-31-21-40-24.json",
+                          "/home/luizfeli/public_html/wifitracker/2017-01-31-18-51-09.json",
                           "/home/luizfeli/public_html/wifitracker/abcd-2017-01-23-18-02-38.json"
                         ].reverse();
 
