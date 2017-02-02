@@ -335,67 +335,6 @@ function demoroScan(scan){
                   });
 } //demoroScan
 
-//----------------------------------------------------------------
-//----------------------------------------------------------------
-//----------------------------------------------------------------
-
-
-function checkPotentialWaiting(){
-
-  //Não há espera em potencial cadastrada
-  if (!$localStorage.potentialWaiting){
-      console.log('*** NÃO TEM ESPERA POTENCIAL  ***');
-
-      //Espera em potencial detectada
-      var now = new Date();
-      $localStorage.potentialWaitingTime = now;
-
-      $localStorage.minPWT = new Date();
-      $localStorage.minPWT.setMinutes($localStorage.potentialWaitingTime.getMinutes() + $scope.minPotentialWaitingTime);
-
-
-      $localStorage.maxPWT = new Date();
-      $localStorage.maxPWT.setMinutes($localStorage.potentialWaitingTime.getMinutes() + $scope.maxPotentialWaitingTime);
-
-      console.log('*** STEP (2) ***');
-
-      console.log('minPWT: '+ $localStorage.minPWT);
-      console.log('maxPWT: '+ $localStorage.maxPWT);
-      console.log('*** CADASTRANDO UMA ESPERA EM POTENCIAL ***');
-
-      $Configurations.setLog('Confirmation: There isn\'t a potential waiting registered yet;  Registering it!');
-      $localStorage.potentialWaiting = {place: place.place, network: $scope.PlaceNetworkConfirmation};
-
-
-      var time = new Date();
-      $rootScope.devEstimatedArrivalTime = pad(time.getHours()) + ":" + pad(time.getMinutes()) + ":" + pad(time.getSeconds());
-      var momentEstimated = moment($rootScope.devEstimatedArrival);
-
-      console.log($rootScope.devEstimatedArrivalTime);
-      return;
-  }
-  //Há uma espera em potencial cadastrada.
-  else {
-      console.log('*** espera ***');
-      var now = new Date();
-
-      //Confirmando espera em potencial.
-
-      $Configurations.setLog('checking if $now >= $minPWT ');
-
-
-      if (now >= $localStorage.minPWT){
-          //Espera (detectada) confirmada
-
-          $Configurations.setLog('Confirmation: There is a potential waiting for: ' + $localStorage.potentialWaiting.place.name);
-          console.log('*** STEP (3) ***');
-
-          checkDND();
-          demoroScanDeparture();
-
-      }
-  }
-}
 
 //----------------------------------------------------------------
 //----------------------------------------------------------------
