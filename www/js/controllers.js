@@ -164,7 +164,7 @@ angular.module('starter.controllers', [])
     //For each Events
     events.forEach(function(event){
         var eventNetworks = event.data;
-        // console.log(eventNetworks);
+        var eventTime = event.data.time;
 
         //For each network in events
         eventNetworks.every(function(eventNetwork){
@@ -177,7 +177,7 @@ angular.module('starter.controllers', [])
               if (eventNetwork.BSSID === knowledgeNetwork.BSSID){
                 console.log('MATCH: Possible potencial waiting: ' + knowledgeNetwork.SSID);
                 $scope.potencialWaiting.network = knowledgeNetwork;
-                console.log(knowledgeNetwork);
+                $scope.potencialWaiting.time = event.time;
                 return false;
               }
             }
