@@ -15,6 +15,7 @@ angular.module('starter.controllers', [])
 
     $scope.startExecutingLog = null;
     $scope.executingLog      = null;
+    $scope.potencialWaiting  = {};
 
   }
 
@@ -31,7 +32,7 @@ angular.module('starter.controllers', [])
     //
     //   console.log(response);
     //
-    //   $scope.logs = response.data;
+    //   $scope.serverLogs = response.data;
     //
     //
     // }, function(response, status){
@@ -92,68 +93,65 @@ angular.module('starter.controllers', [])
     resetVariables();
     $scope.startLoadingLog = true;
 
-          $http({
-            method: 'GET',
-            url: log_url,
-            headers: {'Content-Type': 'application/json'}
-          })
-        .then(function(response, status) {
+    $http({
+        method: 'GET',
+        url: log_url,
+        headers: {'Content-Type': 'application/json'}
+    })
+   .then(function(response, status) {
+        console.log(response);
 
-          console.log(response);
+        $scope.selectedLog = response.data;
 
-          $scope.selectedLog = response.data;
-
-          if ($scope.selectedLog === ""){
+        if ($scope.selectedLog === ""){
             $scope.emptyLogError = true;
-          }
-          else {
+        }
+        else {
             $scope.selectedLog.date = $scope.logs[index].date;
 
-            // var events = response.data.events;
-            //
-            // events.forEach(function(event){
-            //   $scope.speedArr.push(event.position.speed);
-            // })
+            var events = response.data.events;
 
+            events.forEach(function(event){
+              $scope.speedArr.push(event.position.speed);
+            })
+
+            //Geting Arrive and Departure event
             if ($scope.selectedLog.events){
-              $scope.selectedLog.events.forEach(function(event){
+                $scope.selectedLog.events.forEach(function(event){
+                    if(event.type === 'real-arrive'){
+                        $scope.selectedLog.arrive = event;
+                    }
 
-                if(event.type === 'real-arrive'){
-                  $scope.selectedLog.arrive = event;
-                }
-
-                if(event.type === 'real-departure'){
-                  $scope.selectedLog.departure = event;
-                }
-              });
+                    if(event.type === 'real-departure'){
+                        $scope.selectedLog.departure = event;
+                    }
+                });
             }
             else {
               $scope.selectedLog.events = []
             }
-          }
+        }
 
-          console.log($scope.selectedLog);
+        console.log($scope.selectedLog);
 
-          $timeout(function(){
-            $scope.startLoadingLog = false;
-            $scope.logLoaded = true;
+        $timeout(function(){
+          $scope.startLoadingLog = false;
+          $scope.logLoaded = true;
+          console.log(JSON.stringify($scope.speedArr));
 
-          }, 1500)
+        }, 1500)
 
 
-        }, function(response, status){
-          console.log(response);
+    }, function(response, status){
+        console.log(response);
 
-          $timeout(function(){
+        $timeout(function(){
             $scope.startLoadingLog = false;
             $scope.loadingLogError = true;
             $scope.logLoaded       = false;
             alert('Algo deu errado');
-          }, 1000)
-        });
-
-
-
+        }, 1000)
+    });
   };
 
   $scope.simulate = function(selectedLog){
