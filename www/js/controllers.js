@@ -2,8 +2,6 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $http, $timeout) {
 
-  $scope.speedArr          = [];
-
   function resetVariables(){
 
     $scope.selectedLog       = null;
@@ -15,7 +13,6 @@ angular.module('starter.controllers', [])
 
     $scope.startExecutingLog = null;
     $scope.executingLog      = null;
-    $scope.potencialWaiting  = {};
 
   }
 
@@ -111,10 +108,6 @@ angular.module('starter.controllers', [])
 
             var events = response.data.events;
 
-            events.forEach(function(event){
-              $scope.speedArr.push(event.position.speed);
-            })
-
             //Geting Arrive and Departure event
             if ($scope.selectedLog.events){
                 $scope.selectedLog.events.forEach(function(event){
@@ -137,7 +130,6 @@ angular.module('starter.controllers', [])
         $timeout(function(){
           $scope.startLoadingLog = false;
           $scope.logLoaded = true;
-          console.log(JSON.stringify($scope.speedArr));
 
         }, 1500)
 
