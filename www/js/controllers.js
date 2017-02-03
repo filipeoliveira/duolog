@@ -161,7 +161,6 @@ angular.module('starter.controllers', [])
     //For each Events
     events.forEach(function(event){
         var eventNetworks = event.data;
-        var eventTime = event.data.time;
 
         //For each network in events
         eventNetworks.every(function(eventNetwork){
