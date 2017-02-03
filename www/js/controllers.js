@@ -194,8 +194,16 @@ angular.module('starter.controllers', [])
             //We already have a potentialWaiting.
             else{
               checkPotentialWaiting();
-            }
+              var event_time = new Date(event.time);
+              if ((event_time >= $scope.potentialWaiting.min) && (event_time < $scope.potentialWaiting.max)){
+                  //Espera (detectada) confirmada
 
+                  return false;
+
+              }
+
+              // checkPotentialWaiting();
+            }
 
           });
 
