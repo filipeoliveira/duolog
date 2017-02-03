@@ -14,6 +14,11 @@ angular.module('starter.controllers', [])
     $scope.startExecutingLog = null;
     $scope.executingLog      = null;
 
+    $scope.potencialWaiting        = {};
+    $scope.globalPWTMin            = 2; //minutes
+    $scope.globalPWTMax            = 4;
+
+    $scope.hasPotentialWaiting     = null;
   }
 
   // Responsible for loading initial log files in decrescent time order (newer to oldest)
@@ -165,7 +170,7 @@ angular.module('starter.controllers', [])
           knowledges_networks.every(function(knowledgeNetwork){
 
             //If I dont have a potentialWaiting.network set than I continue to iterate.
-            if(!$scope.potencialWaiting.network){
+            if(!$scope.hasPotentialWaiting){
               if (eventNetwork.BSSID === knowledgeNetwork.BSSID){
                 console.log('MATCH: Possible potencial waiting: ' + knowledgeNetwork.SSID);
                 $scope.potencialWaiting.network = knowledgeNetwork;
