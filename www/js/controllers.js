@@ -173,8 +173,21 @@ angular.module('starter.controllers', [])
             if(!$scope.hasPotentialWaiting){
               if (eventNetwork.BSSID === knowledgeNetwork.BSSID){
                 console.log('MATCH: Possible potencial waiting: ' + knowledgeNetwork.SSID);
-                $scope.potencialWaiting.network = knowledgeNetwork;
-                $scope.potencialWaiting.time = event.time;
+
+                //if I found networks with same BSSID, then set potentialWaiting.time minutes;
+                var formattedEventTime = new Date(event.time);
+                var formattedEventTimeMin = new Date(event.time);
+                var formattedEventTimeMax = new Date(event.time);
+                formattedEventTimeMin.setMinutes(formattedEventTime.getMinutes() + $scope.globalPWTMin);
+                formattedEventTimeMax.setMinutes(formattedEventTime.getMinutes() + $scope.globalPWTMax);
+
+                $scope.hasPotentialWaiting = true;
+                $scope.potentialWaiting    = {
+                  "network": knowledgeNetwork,
+                  "time": formattedEventTime,
+                  "min": formattedEventTimeMin,
+                  "max": formattedEventTimeMax
+                }
                 return false;
               }
             }
